@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="HandheldFriendly" content="true">
+    <title>TriveAsia</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/css.css">
+    <script src="https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/bizapp.js"></script>
+</head>
+<body>
+    <div class="content">
+        <img src="https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/img/logo.png" class="logo"/>
+        <div id="infopane" class="infopane">Please login with your Trivecoin account<br/><button onclick="login()">Login</button></div>
+        <div class="location-title">Available location</div>
+        <div id="location-list"></div>
+    </div>
+    <script>
+        var token = "";
+        var elInfoPane = document.getElementById("infopane");
+        var locations = [];
+        var booked = {};
+
+        function login() {
+            BizApp.login({
+                url: "http://bizdev.trivecoin.org:8888/api/login"
+            }, function(err, res) {
+                if (err) return onError(err);
+                if (res.err) return onError(res.err);
+                token = res.token;
+                getName();
+            });
+
+            function onError(err) {
+                elInfoPane.innerHTML = 'Failed to login (Reason: ' + err + ')<br/><button onclick="login()">Login</button>'
+                elInfoPane.classList.add("error");
+            }
+        }
+
+        function getName() {
+            // Send JSON
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4) {
+                    if (this.status !== 200) return onDone();
+                    onDone(JSON.parse(this.responseText));
+                }
+            };
+            xhr.open("GET", "http://bizdev.trivecoin.org:8888/api/name?token=" + token, true);
+            xhr.send();
+
+            function onDone(res) {
+                elInfoPane.innerHTML = 'Welcome back, ' + res.name + '!<br/><button onclick="changeName()">Change Name</button>'
+                elInfoPane.classList.remove("error");
+            }
+        }
+
+        function setName() {
+            var newName = document.getElementById("nameBox").value;
+            elInfoPane.innerHTML = 'Setting name...';
+
+            // Send JSON
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4) {
+                    if (this.status !== 200) return onDone();
+                    onDone(JSON.parse(this.responseText));
+                }
+            };
+
+            xhr.open("POST", "http://bizdev.trivecoin.org:8888/api/name", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send("token=" + token + "&name=" + newName);
+
+            function onDone(res) {
+                elInfoPane.innerHTML = 'Welcome back, ' + res.name + '!<br/><button onclick="changeName()">Change Name</button>'
+            }
+        }
+
+        function changeName() {
+            elInfoPane.innerHTML = '<input id="nameBox" type="text"/><br/><button onclick="setName()">Change name</button>';
+        }
+
+        function bookNow(i) {
+            if (!booked[i]) {
+                BizApp.payToWallet({
+                    address: "yiMD613xpfzMWoozxePGjJyDtCTv6bF5WU",
+                    amount: locations[i].price,
+                    message: "Booking to " + locations[i].name
+                }, function(err, res) {
+                    if (!err) {
+                        var el = document.getElementById("location-" + i);
+                        el.classList.add("booked");
+                        el.innerHTML = "Booked successfully";
+                        booked[i] = true;
+                    }
+                });
+            }
+        }
+
+        (function() {
+            var elLocations = document.getElementById("location-list");
+
+            // Send JSON
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    onLoadData(this.responseText);
+                }
+            };
+            xhr.open("GET", "https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/data.json", true);
+            xhr.send();
+
+            // On JSON loaded
+            function onLoadData(data) {
+                var html = "";
+                var json = JSON.parse(data);
+
+                locations = json;
+                json.forEach(function(location, idx) {
+                    var price = (parseInt(location.price, 10) / 100000000);
+                    price = isNaN(price) ? "-" : price.toFixed(3);
+                    html += '<div class="location">' +
+                            '<div class="location-image" style="background-image: url(\'' + location.img + '\')"></div>' +
+                            '<div class="location-name">' + location.name + '</div>' +
+                            '<div class="location-details">' +
+                            '<div class="location-day">' + location.day + '</div>' +
+                            '<div class="location-price">' + price + ' TRVC</div>' +
+                            '</div><button id="location-' + idx + '" onclick="bookNow(' + idx + ')">Book now</button></div>'
+                });
+
+                elLocations.innerHTML = html;
+            }
+        })();
+    </script>
+</body>
+</html>

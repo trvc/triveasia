@@ -1,73 +1,73 @@
 [
     {
         "name": "Beijing",
-        "img": "https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/img/beijing.jpg",
+        "img": "./img/beijing.jpg",
         "day": "7D6N",
         "price": 1200000000
     },
     {
         "name": "Brazil",
-        "img": "https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/img/brazil.jpg",
+        "img": "./img/brazil.jpg",
         "day": "7D6N",
         "price": 3580000000
     },
     {
         "name": "Egypt",
-        "img": "https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/img/egypt.jpg",
+        "img": "./img/egypt.jpg",
         "day": "7D6N",
         "price": 1860000000
     },
     {
         "name": "India",
-        "img": "https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/img/india.jpg",
+        "img": "./img/india.jpg",
         "day": "7D6N",
         "price": 800000000
     },
     {
         "name": "Japan",
-        "img": "https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/img/japan.jpg",
+        "img": "./img/japan.jpg",
         "day": "7D6N",
         "price": 3030000000
     },
     {
         "name": "Kuala Lumpur",
-        "img": "https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/img/kualalumpur.jpg",
+        "img": "./img/kualalumpur.jpg",
         "day": "7D6N",
         "price": 2510000000
     },
     {
         "name": "New York",
-        "img": "https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/img/newyork.jpg",
+        "img": "./img/newyork.jpg",
         "day": "7D6N",
         "price": 8270000000
     },
     {
         "name": "Paris",
-        "img": "https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/img/paris.jpg",
+        "img": "./img/paris.jpg",
         "day": "7D6N",
         "price": 5300000000
     },
     {
         "name": "Rome",
-        "img": "https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/img/rome.jpg",
+        "img": "./img/rome.jpg",
         "day": "7D6N",
         "price": 3890000000
     },
     {
         "name": "San Francisco",
-        "img": "https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/img/sanfrancisco.jpg",
+        "img": "./img/sanfrancisco.jpg",
         "day": "7D6N",
         "price": 6890000000
     },
     {
         "name": "Singapore",
-        "img": "https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/img/singapore.jpg",
+        "img": "./img/singapore.jpg",
         "day": "7D6N",
         "price": 2110000000
     },
     {
         "name": "Sydney",
-        "img": "https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/img/sydney.jpg",
+        "img": "./img/sydney.jpg",
         "day": "7D6N",
         "price": 3990000000
     }

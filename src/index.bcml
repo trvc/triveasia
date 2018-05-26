@@ -6,16 +6,18 @@
     <meta name="HandheldFriendly" content="true">
     <title>TriveAsia</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/css.css">
-    <script src="https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/bizapp.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css.css">
+    <script src="https://cdn.bizstore.io/bizapp-0.0.1.min.js?"></script>
 </head>
 <body>
-    <div class="content">
-        <img src="https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/img/logo.png" class="logo"/>
-        <div id="infopane" class="infopane">Please login with your Trivecoin account<br/><button onclick="login()">Login</button></div>
-        <div class="location-title">Available location</div>
-        <div id="location-list"></div>
-    </div>
+    <bizapp-root>
+        <div class="content">
+            <img src="./img/logo.png" class="logo"/>
+            <div id="infopane" class="infopane">Please login with your Trivecoin account<br/><button onclick="login()">Login</button></div>
+            <div class="location-title">Available location</div>
+            <div id="location-list"></div>
+        </div>
+    </bizapp-root>
     <script>
         var token = "";
         var elInfoPane = document.getElementById("infopane");
@@ -109,7 +111,7 @@
                     onLoadData(this.responseText);
                 }
             };
-            xhr.open("GET", "https://cdn.rawgit.com/Ang-YC/triveasia/v0.0.1/src/data.json", true);
+            xhr.open("GET", "./data.json", true);
             xhr.send();
 
             // On JSON loaded

@@ -26,7 +26,7 @@
 
         function login() {
             BizApp.login({
-                url: "http://bizdev.trivecoin.org:8888/api/login"
+                url: "https://demo.bizstore.io/api/login"
             }, function(err, res) {
                 if (err) return onError(err);
                 if (res.err) return onError(res.err);
@@ -49,7 +49,7 @@
                     onDone(JSON.parse(this.responseText));
                 }
             };
-            xhr.open("GET", "http://bizdev.trivecoin.org:8888/api/name?token=" + token, true);
+            xhr.open("GET", "https://demo.bizstore.io/api/name?token=" + token, true);
             xhr.send();
 
             function onDone(res) {
@@ -71,7 +71,7 @@
                 }
             };
 
-            xhr.open("POST", "http://bizdev.trivecoin.org:8888/api/name", true);
+            xhr.open("POST", "https://demo.bizstore.io/api/name", true);
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhr.send("token=" + token + "&name=" + newName);
 

@@ -7,13 +7,14 @@
     <title>TriveAsia</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./css.css">
-    <script src="https://cdn.bizstore.io/bizapp-0.0.2.min.js?"></script>
+    <script src="https://cdn.bizstore.io/bizapp-0.0.3.min.js"></script>
 </head>
 <body>
     <bizapp-root>
         <div class="content">
             <img src="./img/logo.png" class="logo"/>
             <div id="infopane" class="infopane">Please login with your Trivecoin account<br/><button onclick="login()">Login</button></div>
+            <div class="support"><button onclick="support()">Customer Support</button></div>
             <div class="location-title">Available location</div>
             <div id="location-list"></div>
         </div>
@@ -38,6 +39,10 @@
                 elInfoPane.innerHTML = 'Failed to login (Reason: ' + err + ')<br/><button onclick="login()">Login</button>'
                 elInfoPane.classList.add("error");
             }
+        }
+
+        function support() {
+            BizApp.openExternalLink({ url: "https://trivecoin.org/?forum=bizstore-io-discussion" });
         }
 
         function getName() {

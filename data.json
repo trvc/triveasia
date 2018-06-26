@@ -3,13 +3,13 @@
         "name": "Beijing",
         "img": "./img/beijing.jpg",
         "day": "7D6N",
-        "price": 1200000000
+        "price": 10000000
     },
     {
         "name": "Brazil",
         "img": "./img/brazil.jpg",
         "day": "7D6N",
-        "price": 3580000000
+        "price": 20000000
     },
     {
         "name": "Egypt",
